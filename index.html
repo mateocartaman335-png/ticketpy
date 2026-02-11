@@ -1,119 +1,95 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TicketPY</title><style>
+<title>TicketPY</title>
+
+<style>
+
 body{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#0b1220;
-    color:white;
-}
-
-/* LOGIN */
-#loginBox{
-    text-align:center;
-    margin-top:80px;
-}
-.box{
-    background:#1e293b;
-    padding:30px;
-    width:300px;
-    margin:auto;
-    border-radius:14px;
-}
-input{
-    width:90%;
-    padding:12px;
-    margin:8px;
-    border-radius:8px;
-    border:none;
-}
-button{
-    background:#22c55e;
-    border:none;
-    padding:14px;
-    width:95%;
-    color:white;
-    font-size:16px;
-    border-radius:10px;
-}
-
-/* APP */
-#app{
-    display:none;
-}
-
-/* HEADER */
-.header{
-    padding:20px;
-    font-size:22px;
-    font-weight:bold;
-}
-
-/* EVENT CARDS */
-.events{
-    padding:15px;
-}
-.card{
-    background:#1e293b;
-    border-radius:16px;
-    margin-bottom:18px;
+    background:#020817;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
     overflow:hidden;
 }
-.card img{
-    width:100%;
-}
-.card-content{
-    padding:12px;
-}
-.title{
-    font-size:18px;
-    font-weight:bold;
-}
-.location{
-    color:#9ca3af;
-    margin-top:5px;
+
+/* Logo */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    animation:fadeIn 2s ease forwards;
 }
 
-/* NAVBAR */
-.navbar{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:#020617;
-    display:flex;
-    justify-content:space-around;
-    padding:12px 0;
-    border-top:1px solid #1e293b;
-}
-.navbar div{
-    text-align:center;
-    color:#9ca3af;
-    font-size:14px;
-}
-.logout{
-    position:fixed;
-    top:15px;
-    right:15px;
+.ticket{
+    width:60px;
+    height:40px;
     background:#ef4444;
-    padding:8px 14px;
-    border-radius:10px;
+    border-radius:8px;
+    position:relative;
+    animation:pop 1.5s ease forwards;
 }
-</style></head><body><!-- LOGIN --><div id="loginBox">
-<h1>🎟 TicketPY</h1>
-<div class="box">
-<input id="email" type="email" placeholder="Correo">
-<input id="password" type="password" placeholder="Contraseña">
-<button onclick="register()">Crear cuenta</button>
-<br><br>
-<button onclick="login()">Iniciar sesión</button>
+
+.ticket:before,.ticket:after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:#020817;
+    border-radius:50%;
+    top:14px;
+}
+
+.ticket:before{ left:-6px;}
+.ticket:after{ right:-6px;}
+
+h1{
+    color:white;
+    font-size:42px;
+    font-family:Arial, Helvetica, sans-serif;
+    letter-spacing:3px;
+    opacity:0;
+    animation:fadeText 2s ease forwards;
+    animation-delay:1s;
+}
+
+/* Animaciones */
+@keyframes pop{
+    0%{transform:scale(0);}
+    70%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+
+@keyframes fadeText{
+    from{opacity:0; transform:translateX(30px);}
+    to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="logo">
+    <div class="ticket"></div>
+    <h1>TicketPY</h1>
 </div>
-</div><!-- APP --><div id="app"><div class="logout" onclick="logout()">Salir</div><div class="header">Eventos destacados</div><div class="events"><div class="card">
-<img src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2">
-<div class="card-content">
-<div class="title">Concierto en Vivo</div>
-<div class="location">Asunción • 25 Febrero</div>
-</div>
-</div><div class="card">
-<img
+
+<script>
+/* Después de 3 segundos ir al login */
+setTimeout(()=>{
+    window.location.href="login.html";
+},3000);
+</script>
+
+</body>
+</html>
