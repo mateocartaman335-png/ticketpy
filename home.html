@@ -1,31 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TicketPY</title>
-
-<style>
-
+<title>TicketPY</title><style>
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
+font-family:Arial;
 background:#020817;
 color:white;
 }
 
-/* HEADER */
 .header{
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:15px;
-background:#020817;
 font-size:20px;
 font-weight:bold;
 }
 
-/* CATEGORIAS */
 .categorias{
 display:flex;
 gap:10px;
@@ -42,7 +35,6 @@ border-radius:25px;
 white-space:nowrap;
 }
 
-/* EVENTOS */
 .eventos{
 padding:15px;
 }
@@ -71,7 +63,6 @@ margin:0;
 color:#94a3b8;
 }
 
-/* MENU INFERIOR */
 .bottomnav{
 position:fixed;
 bottom:0;
@@ -89,56 +80,32 @@ text-align:center;
 color:white;
 font-size:14px;
 }
-
-</style>
-</head>
-
-<body>
-
-<div class="header">
+</style></head><body><div class="header">
 TicketPY
 <div onclick="logout()" style="cursor:pointer;">Salir</div>
-</div>
-
-<!-- CATEGORIAS -->
-<div class="categorias">
+</div><div class="categorias">
 <button>Deportes</button>
 <button>Conciertos</button>
 <button>Teatro</button>
 <button>Conferencias</button>
-</div>
-
-<!-- EVENTOS -->
-<div class="eventos">
-
+</div><div class="eventos">
 <div class="card">
 <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819">
 <h3>Concierto Nacional</h3>
 <p>Asunción - 15 Marzo</p>
-</div>
-
-<div class="card">
+</div><div class="card">
 <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2">
 <h3>Final de Fútbol</h3>
 <p>Defensores del Chaco</p>
 </div>
-
-</div>
-
-<!-- MENU INFERIOR -->
-<div class="bottomnav">
+</div><div class="bottomnav">
 <div>🏠<br>Inicio</div>
 <div>🔍<br>Buscar</div>
 <div>🎟<br>Tickets</div>
 <div>👤<br>Perfil</div>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script>
+</div><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script>
 const firebaseConfig = {
-  apiKey: "TU API KEY",
+  apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
   authDomain: "ticketpy-4cafa.firebaseapp.com",
   projectId: "ticketpy-4cafa",
   storageBucket: "ticketpy-4cafa.firebasestorage.app",
@@ -159,7 +126,5 @@ function logout(){
 auth.signOut();
 window.location="login.html";
 }
-</script>
-
-</body>
+</script></body>
 </html>
