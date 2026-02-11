@@ -49,9 +49,6 @@ font-size:16px;
 <div class="container">
 <h2 style="color:white;">Crear Cuenta</h2>
 
-<input id="nombre" placeholder="Nombre completo">
-<input id="cedula" placeholder="Número de cédula">
-<input id="celular" placeholder="Número de celular">
 <input id="email" type="email" placeholder="Correo electrónico">
 <input id="password" type="password" placeholder="Contraseña">
 
@@ -59,13 +56,12 @@ font-size:16px;
 <p id="msg" style="color:white;"></p>
 </div>
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
+  apiKey: "TU API KEY",
   authDomain: "ticketpy-4cafa.firebaseapp.com",
   projectId: "ticketpy-4cafa",
   storageBucket: "ticketpy-4cafa.firebasestorage.app",
@@ -82,13 +78,11 @@ let email=document.getElementById("email").value;
 let pass=document.getElementById("password").value;
 
 auth.createUserWithEmailAndPassword(email,pass)
-.then((userCredential)=>{
+.then((cred)=>{
 
-let user=userCredential.user;
-
-user.sendEmailVerification().then(()=>{
+cred.user.sendEmailVerification().then(()=>{
 document.getElementById("msg").innerText=
-"Te enviamos un correo de verificación 📩. Debes confirmarlo antes de iniciar sesión.";
+"Revisá tu correo 📩 y verificá la cuenta antes de iniciar sesión.";
 });
 
 })
