@@ -1,11 +1,17 @@
 <!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TicketPY</title><style>
 body{
-    font-family: Arial;
-    background:#0f172a;
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0b1220;
     color:white;
+}
+
+/* LOGIN */
+#loginBox{
     text-align:center;
     margin-top:80px;
 }
@@ -14,69 +20,100 @@ body{
     padding:30px;
     width:300px;
     margin:auto;
-    border-radius:10px;
+    border-radius:14px;
 }
 input{
     width:90%;
-    padding:10px;
+    padding:12px;
     margin:8px;
-    border-radius:6px;
+    border-radius:8px;
     border:none;
 }
 button{
     background:#22c55e;
     border:none;
-    padding:12px;
+    padding:14px;
     width:95%;
     color:white;
     font-size:16px;
-    border-radius:8px;
-    cursor:pointer;
+    border-radius:10px;
 }
-button:hover{
-    background:#16a34a;
+
+/* APP */
+#app{
+    display:none;
 }
-</style></head><body><h1>🎟 TicketPY</h1><div class="box">
-<h2>Crear cuenta</h2>
+
+/* HEADER */
+.header{
+    padding:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* EVENT CARDS */
+.events{
+    padding:15px;
+}
+.card{
+    background:#1e293b;
+    border-radius:16px;
+    margin-bottom:18px;
+    overflow:hidden;
+}
+.card img{
+    width:100%;
+}
+.card-content{
+    padding:12px;
+}
+.title{
+    font-size:18px;
+    font-weight:bold;
+}
+.location{
+    color:#9ca3af;
+    margin-top:5px;
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#020617;
+    display:flex;
+    justify-content:space-around;
+    padding:12px 0;
+    border-top:1px solid #1e293b;
+}
+.navbar div{
+    text-align:center;
+    color:#9ca3af;
+    font-size:14px;
+}
+.logout{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:#ef4444;
+    padding:8px 14px;
+    border-radius:10px;
+}
+</style></head><body><!-- LOGIN --><div id="loginBox">
+<h1>🎟 TicketPY</h1>
+<div class="box">
 <input id="email" type="email" placeholder="Correo">
 <input id="password" type="password" placeholder="Contraseña">
-<button onclick="register()">Registrarme</button><h3>o</h3>
+<button onclick="register()">Crear cuenta</button>
+<br><br>
 <button onclick="login()">Iniciar sesión</button>
-</div><script type="module">
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
-  authDomain: "ticketpy-4cafa.firebaseapp.com",
-  projectId: "ticketpy-4cafa",
-  storageBucket: "ticketpy-4cafa.firebasestorage.app",
-  messagingSenderId: "1027792611884",
-  appId: "1:1027792611884:web:528feeca6a817b0839ff89"
-};
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-window.register = function(){
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
-createUserWithEmailAndPassword(auth, email, password)
-.then(() => alert("Cuenta creada correctamente ✅"))
-.catch(error => alert(error.message));
-}
-
-window.login = function(){
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
-
-signInWithEmailAndPassword(auth, email, password)
-.then(() => alert("Bienvenido a TicketPY 🎟"))
-.catch(error => alert(error.message));
-}
-
-</script></body>
-</html>
+</div>
+</div><!-- APP --><div id="app"><div class="logout" onclick="logout()">Salir</div><div class="header">Eventos destacados</div><div class="events"><div class="card">
+<img src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2">
+<div class="card-content">
+<div class="title">Concierto en Vivo</div>
+<div class="location">Asunción • 25 Febrero</div>
+</div>
+</div><div class="card">
+<img
