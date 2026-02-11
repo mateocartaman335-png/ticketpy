@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - TicketPY</title>
-
-<style>
+<title>Login - TicketPY</title><style>
 body{
 background:#020817;
 font-family:Arial;
@@ -47,30 +44,16 @@ font-size:16px;
 color:#38bdf8;
 cursor:pointer;
 }
-</style>
-</head>
-
-<body>
-
-<div class="container">
-<h2 style="color:white;">TicketPY</h2>
-
-<input type="email" id="email" placeholder="Correo">
-<input type="password" id="password" placeholder="Contraseña">
-
-<button onclick="login()">Iniciar sesión</button>
+</style></head><body><div class="container">
+<h2 style="color:white;">TicketPY</h2><input type="email" id="email" placeholder="Correo">
+<input type="password" id="password" placeholder="Contraseña"><button onclick="login()">Iniciar sesión</button>
 <br><br>
 <span class="link" onclick="window.location='registro.html'">Crear cuenta</span>
 
 <p id="error" style="color:red;"></p>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script>
+</div><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script>
 const firebaseConfig = {
-  apiKey: "TU API KEY",
+  apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
   authDomain: "ticketpy-4cafa.firebaseapp.com",
   projectId: "ticketpy-4cafa",
   storageBucket: "ticketpy-4cafa.firebasestorage.app",
@@ -82,26 +65,21 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 function login(){
-
 let email=document.getElementById("email").value;
 let pass=document.getElementById("password").value;
 
 auth.signInWithEmailAndPassword(email,pass)
 .then((cred)=>{
-
 if(cred.user.emailVerified){
 window.location="home.html";
 }else{
-document.getElementById("error").innerText="Verificá tu correo primero 📩";
+document.getElementById("error").innerText="Primero verifica tu correo 📩";
 auth.signOut();
 }
-
 })
 .catch(()=>{
 document.getElementById("error").innerText="Correo o contraseña incorrectos";
 });
 }
-</script>
-
-</body>
+</script></body>
 </html>
