@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - TicketPY</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#020817;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:#1e293b;
+    padding:30px;
+    border-radius:20px;
+    width:320px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+}
+
+h2{
+    color:white;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border:none;
+    outline:none;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+.error{
+    color:#ef4444;
+    margin-top:10px;
+    display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>TicketPY</h2>
+
+    <input type="email" id="email" placeholder="Correo">
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <button onclick="login()">Iniciar sesión</button>
+    <button onclick="register()">Crear cuenta</button>
+
+    <p class="error" id="error">Datos incorrectos</p>
+</div>
+
+<script>
+
+/* CREAR CUENTA */
+function register(){
+    let email=document.getElementById("email").value;
+    let pass=document.getElementById("password").value;
+
+    if(email=="" || pass==""){
+        alert("Completa los campos");
+        return;
+    }
+
+    localStorage.setItem("user_email",email);
+    localStorage.setItem("user_pass",pass);
+
+    alert("Cuenta creada ✔");
+}
+
+/* LOGIN REAL */
+function login(){
+    let email=document.getElementById("email").value;
+    let pass=document.getElementById("password").value;
+
+    let savedEmail=localStorage.getItem("user_email");
+    let savedPass=localStorage.getItem("user_pass");
+
+    if(email===savedEmail && pass===savedPass){
+        window.location.href="home.html";
+    }else{
+        document.getElementById("error").style.display="block";
+    }
+}
+
+</script>
+
+</body>
+</html>
