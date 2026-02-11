@@ -41,11 +41,15 @@ font-size:16px;
 }
 </style></head>
 <body><div class="container">
-<h2 style="color:white;">Crear Cuenta</h2><input id="email" type="email" placeholder="Correo electrónico">
+<h2 style="color:white;">Crear Cuenta</h2><input id="nombre" placeholder="Nombre y Apellido">
+<input id="cedula" placeholder="Cédula">
+<input id="telefono" placeholder="Número de celular">
+<input id="nacimiento" type="date">
+<input id="email" type="email" placeholder="Correo electrónico">
 <input id="password" type="password" placeholder="Contraseña"><button onclick="registrar()">Registrarme</button>
 
 <p id="msg" style="color:white;"></p>
-</div><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script>
+</div><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script>
 const firebaseConfig = {
   apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
   authDomain: "ticketpy-4cafa.firebaseapp.com",
@@ -57,17 +61,32 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const db = firebase.firestore();
 
 function registrar(){
+
+let nombre=document.getElementById("nombre").value;
+let cedula=document.getElementById("cedula").value;
+let telefono=document.getElementById("telefono").value;
+let nacimiento=document.getElementById("nacimiento").value;
 let email=document.getElementById("email").value;
 let pass=document.getElementById("password").value;
 
 auth.createUserWithEmailAndPassword(email,pass)
 .then((cred)=>{
-cred.user.sendEmailVerification().then(()=>{
-document.getElementById("msg").innerText=
-"Revisá tu correo 📩 y verificá la cuenta antes de iniciar sesión.";
+
+db.collection("usuarios").doc(cred.user.uid).set({
+nombre:nombre,
+cedula:cedula,
+telefono:telefono,
+nacimiento:nacimiento,
+email:email
 });
+
+cred.user.sendEmailVerification();
+
+document.getElementById("msg").innerText=
+"Cuenta creada ✔ Revisa tu correo para verificar.";
 })
 .catch(e=>{
 document.getElementById("msg").innerText=e.message;
