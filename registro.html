@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registro - TicketPY</title>
-
-<style>
+<title>Registro - TicketPY</title><style>
 body{
 background:#020817;
 font-family:Arial;
@@ -42,26 +39,15 @@ background:#22c55e;
 color:white;
 font-size:16px;
 }
-</style>
-</head>
-<body>
+</style></head>
+<body><div class="container">
+<h2 style="color:white;">Crear Cuenta</h2><input id="email" type="email" placeholder="Correo electrónico">
+<input id="password" type="password" placeholder="Contraseña"><button onclick="registrar()">Registrarme</button>
 
-<div class="container">
-<h2 style="color:white;">Crear Cuenta</h2>
-
-<input id="email" type="email" placeholder="Correo electrónico">
-<input id="password" type="password" placeholder="Contraseña">
-
-<button onclick="registrar()">Registrarme</button>
 <p id="msg" style="color:white;"></p>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script>
+</div><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script>
 const firebaseConfig = {
-  apiKey: "TU API KEY",
+  apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
   authDomain: "ticketpy-4cafa.firebaseapp.com",
   projectId: "ticketpy-4cafa",
   storageBucket: "ticketpy-4cafa.firebasestorage.app",
@@ -73,24 +59,19 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 function registrar(){
-
 let email=document.getElementById("email").value;
 let pass=document.getElementById("password").value;
 
 auth.createUserWithEmailAndPassword(email,pass)
 .then((cred)=>{
-
 cred.user.sendEmailVerification().then(()=>{
 document.getElementById("msg").innerText=
 "Revisá tu correo 📩 y verificá la cuenta antes de iniciar sesión.";
 });
-
 })
 .catch(e=>{
 document.getElementById("msg").innerText=e.message;
 });
 }
-</script>
-
-</body>
+</script></body>
 </html>
