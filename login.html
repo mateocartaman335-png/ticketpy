@@ -70,7 +70,7 @@ cursor:pointer;
 
 <script>
 const firebaseConfig = {
-  apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
+  apiKey: "TU API KEY",
   authDomain: "ticketpy-4cafa.firebaseapp.com",
   projectId: "ticketpy-4cafa",
   storageBucket: "ticketpy-4cafa.firebasestorage.app",
@@ -87,21 +87,18 @@ let email=document.getElementById("email").value;
 let pass=document.getElementById("password").value;
 
 auth.signInWithEmailAndPassword(email,pass)
-.then((userCredential)=>{
+.then((cred)=>{
 
-let user=userCredential.user;
-
-if(user.emailVerified){
-window.location.href="home.html";
+if(cred.user.emailVerified){
+window.location="home.html";
 }else{
-document.getElementById("error").innerText=
-"Debes verificar tu correo primero 📩";
+document.getElementById("error").innerText="Verificá tu correo primero 📩";
 auth.signOut();
 }
 
 })
 .catch(()=>{
-document.getElementById("error").innerText="Datos incorrectos";
+document.getElementById("error").innerText="Correo o contraseña incorrectos";
 });
 }
 </script>
