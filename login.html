@@ -9,22 +9,22 @@ font-family:Arial;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+min-height:100vh;
 margin:0;
 }
 
-.container{
+.box{
 background:#1e293b;
-padding:30px;
+padding:25px;
 border-radius:20px;
-width:320px;
+width:330px;
 text-align:center;
 }
 
 input{
 width:100%;
 padding:12px;
-margin:10px 0;
+margin:8px 0;
 border-radius:10px;
 border:none;
 }
@@ -42,27 +42,23 @@ font-size:16px;
 
 .link{
 color:#38bdf8;
+display:block;
+margin-top:10px;
 cursor:pointer;
 }
-</style></head><body><div class="container">
-<h2 style="color:white;">TicketPY</h2><input type="email" id="email" placeholder="Correo">
-<input type="password" id="password" placeholder="Contraseña"><button onclick="login()">Iniciar sesión</button>
-<br><br>
-<span class="link" onclick="window.location='registro.html'">Crear cuenta</span>
 
-<p id="error" style="color:red;"></p>
-</div><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script>
-const firebaseConfig = {
-  apiKey: "AIzaSyCpjM7gyevWjO_y-N0pClpt_sNQNyZ13Ns",
-  authDomain: "ticketpy-4cafa.firebaseapp.com",
-  projectId: "ticketpy-4cafa",
-  storageBucket: "ticketpy-4cafa.firebasestorage.app",
-  messagingSenderId: "1027792611884",
-  appId: "1:1027792611884:web:528feeca6a817b0839ff89"
-};
+#error{
+color:#ff6b6b;
+}
+</style></head><body><div class="box">
+<h2 style="color:white;">TicketPY</h2><input id="email" type="email" placeholder="Correo">
+<input id="password" type="password" placeholder="Contraseña"><button onclick="login()">Iniciar sesión</button>
+<button onclick="location.href='registro.html'">Crear cuenta</button>
 
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+<span class="link" onclick="reset()">Olvidé mi contraseña</span>
+
+<p id="error"></p>
+</div><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="firebase.js"></script><script>
 
 function login(){
 let email=document.getElementById("email").value;
@@ -70,16 +66,34 @@ let pass=document.getElementById("password").value;
 
 auth.signInWithEmailAndPassword(email,pass)
 .then((cred)=>{
-if(cred.user.emailVerified){
-window.location="home.html";
-}else{
-document.getElementById("error").innerText="Primero verifica tu correo 📩";
+
+if(!cred.user.emailVerified){
+document.getElementById("error").innerText="Verifica tu correo primero 📩";
 auth.signOut();
+return;
 }
+
+window.location="home.html";
 })
 .catch(()=>{
 document.getElementById("error").innerText="Correo o contraseña incorrectos";
 });
 }
+
+function reset(){
+let email=document.getElementById("email").value;
+
+if(email==""){
+document.getElementById("error").innerText="Escribe tu correo primero";
+return;
+}
+
+auth.sendPasswordResetEmail(email)
+.then(()=>{
+document.getElementById("error").style.color="lightgreen";
+document.getElementById("error").innerText="Correo de recuperación enviado 📩";
+});
+}
+
 </script></body>
 </html>
