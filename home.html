@@ -6,119 +6,158 @@
 <title>TicketPY</title>
 
 <style>
+
 body{
 margin:0;
+font-family:Arial, Helvetica, sans-serif;
 background:#020817;
 color:white;
-font-family:Arial;
 }
 
-header{
+/* HEADER */
+.header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 25px;
+padding:15px;
 background:#020817;
-position:sticky;
-top:0;
-}
-
-.logo{
-font-size:22px;
+font-size:20px;
 font-weight:bold;
-color:#22c55e;
 }
 
-.hero{
-height:60vh;
-background:url('https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2') center/cover;
+/* CATEGORIAS */
+.categorias{
 display:flex;
-align-items:flex-end;
-padding:40px;
-}
-
-.hero h1{
-font-size:35px;
-}
-
-.section{
-padding:20px;
-}
-
-.cards{
-display:flex;
-gap:15px;
+gap:10px;
 overflow-x:auto;
+padding:15px;
+}
+
+.categorias button{
+background:transparent;
+border:2px solid #3f3f46;
+color:white;
+padding:10px 18px;
+border-radius:25px;
+white-space:nowrap;
+}
+
+/* EVENTOS */
+.eventos{
+padding:15px;
 }
 
 .card{
-min-width:220px;
 background:#1e293b;
-border-radius:15px;
-padding:10px;
+border-radius:18px;
+margin-bottom:15px;
+overflow:hidden;
 }
 
 .card img{
 width:100%;
-border-radius:12px;
+height:160px;
+object-fit:cover;
 }
-button{
-background:red;
-color:white;
+
+.card h3{
 padding:10px;
-border:none;
-border-radius:10px;
+margin:0;
 }
+
+.card p{
+padding:0 10px 10px;
+margin:0;
+color:#94a3b8;
+}
+
+/* MENU INFERIOR */
+.bottomnav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#020817;
+display:flex;
+justify-content:space-around;
+padding:10px 0;
+border-top:1px solid #1e293b;
+}
+
+.bottomnav div{
+text-align:center;
+color:white;
+font-size:14px;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="header">
+TicketPY
+<div onclick="logout()" style="cursor:pointer;">Salir</div>
+</div>
+
+<!-- CATEGORIAS -->
+<div class="categorias">
+<button>Deportes</button>
+<button>Conciertos</button>
+<button>Teatro</button>
+<button>Conferencias</button>
+</div>
+
+<!-- EVENTOS -->
+<div class="eventos">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819">
+<h3>Concierto Nacional</h3>
+<p>Asunción - 15 Marzo</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2">
+<h3>Final de Fútbol</h3>
+<p>Defensores del Chaco</p>
+</div>
+
+</div>
+
+<!-- MENU INFERIOR -->
+<div class="bottomnav">
+<div>🏠<br>Inicio</div>
+<div>🔍<br>Buscar</div>
+<div>🎟<br>Tickets</div>
+<div>👤<br>Perfil</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script>
-if(localStorage.getItem("sesion")!=="activa"){
-window.location.href="login.html";
+const firebaseConfig = {
+  apiKey: "TU API KEY",
+  authDomain: "ticketpy-4cafa.firebaseapp.com",
+  projectId: "ticketpy-4cafa",
+  storageBucket: "ticketpy-4cafa.firebasestorage.app",
+  messagingSenderId: "1027792611884",
+  appId: "1:1027792611884:web:528feeca6a817b0839ff89"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+auth.onAuthStateChanged(user=>{
+if(!user){
+window.location="login.html";
 }
-</script>
-
-<header>
-<div class="logo">🎟 TicketPY</div>
-<div>
-<span id="saludo"></span>
-<button onclick="logout()">Cerrar sesión</button>
-</div>
-</header>
-
-<div class="hero">
-<h1>Eventos destacados</h1>
-</div>
-
-<div class="section">
-<h2>Conciertos</h2>
-<div class="cards">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30">
-<p>Festival Electrónico</p>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745">
-<p>Rock en Vivo</p>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1506157786151-b8491531f063">
-<p>DJ Night</p>
-</div>
-</div>
-</div>
-
-<script>
-let user=JSON.parse(localStorage.getItem("usuario"));
-document.getElementById("saludo").innerText="Hola, "+user.nombre;
+});
 
 function logout(){
-localStorage.removeItem("sesion");
-window.location.href="login.html";
+auth.signOut();
+window.location="login.html";
 }
 </script>
 
