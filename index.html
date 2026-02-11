@@ -6,10 +6,11 @@
 <title>TicketPY</title>
 
 <style>
-
 body{
     margin:0;
-    background:#020817;
+    background:black;
+    color:white;
+    font-family:Arial;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -17,77 +18,29 @@ body{
     overflow:hidden;
 }
 
-/* Logo */
 .logo{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    animation:fadeIn 2s ease forwards;
-}
-
-.ticket{
-    width:60px;
-    height:40px;
-    background:#ef4444;
-    border-radius:8px;
-    position:relative;
-    animation:pop 1.5s ease forwards;
-}
-
-.ticket:before,.ticket:after{
-    content:"";
-    position:absolute;
-    width:12px;
-    height:12px;
-    background:#020817;
-    border-radius:50%;
-    top:14px;
-}
-
-.ticket:before{ left:-6px;}
-.ticket:after{ right:-6px;}
-
-h1{
-    color:white;
-    font-size:42px;
-    font-family:Arial, Helvetica, sans-serif;
-    letter-spacing:3px;
+    font-size:50px;
+    font-weight:bold;
     opacity:0;
-    animation:fadeText 2s ease forwards;
-    animation-delay:1s;
+    transform:scale(0.5);
+    animation:intro 3s forwards;
 }
 
-/* Animaciones */
-@keyframes pop{
-    0%{transform:scale(0);}
-    70%{transform:scale(1.2);}
-    100%{transform:scale(1);}
+@keyframes intro{
+    0%{opacity:0;transform:scale(0.5);}
+    50%{opacity:1;transform:scale(1.2);}
+    100%{opacity:1;transform:scale(1);}
 }
-
-@keyframes fadeText{
-    from{opacity:0; transform:translateX(30px);}
-    to{opacity:1; transform:translateX(0);}
-}
-
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="logo">
-    <div class="ticket"></div>
-    <h1>TicketPY</h1>
-</div>
+<div class="logo">🎟 TicketPY</div>
 
 <script>
-/* Después de 3 segundos ir al login */
 setTimeout(()=>{
-    window.location.href="login.html";
+window.location.href="login.html";
 },3000);
 </script>
 
